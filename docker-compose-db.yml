@@ -1,0 +1,52 @@
+version: '3.4'
+
+services:
+########################################################## microservices.demo.auth.db ##################################################################################
+  microservices.demo.auth.db:
+    image: ${DOCKER_REGISTRY-}microservicesdemoauthdb
+    ports:
+       - 27018:27017
+    build:
+      context: .
+      dockerfile: db/Microservices.Demo.Auth.DB/Dockerfile
+    networks:
+     - backend
+########################################################## microservices.demo.policy.db ##################################################################################
+  microservices.demo.policy.db:
+    image: ${DOCKER_REGISTRY-}microservicesdemopolicydb
+    ports:
+       - 14332:1433
+    volumes:
+      - ./db/Microservices.Demo.Policy.DB/Docker/Data:/var/opt/mssql/Microservices.Demo.Policy/data
+    build:
+      context: .
+      dockerfile: db/Microservices.Demo.Policy.DB/Dockerfile
+    networks:
+      - backend
+########################################################## microservices.demo.pricing.db ##################################################################################
+  microservices.demo.pricing.db:
+    image: ${DOCKER_REGISTRY-}microservicesdemopricingdb
+    ports:
+       - 54321:5432
+    build:
+      context: .
+      dockerfile: db/Microservices.Demo.Pricing.DB/Dockerfile      
+    networks:
+      - backend
+########################################################## microservices.demo.product.db ##################################################################################
+  microservices.demo.product.db:
+    image: ${DOCKER_REGISTRY-}microservicesdemoproductdb
+    ports:
+       - 14331:1433
+    volumes:
+      - ./db/Microservices.Demo.Product.DB/Docker/Data:/var/opt/mssql/Microservices.Demo.Product/data
+    build:
+      dockerfile: db/Microservices.Demo.Product.DB/Dockerfile
+      context: .
+    networks:
+      - backend
+########################################################## networks ##################################################################################
+networks:
+  backend:      
+    name: backend
+    driver: bridge
