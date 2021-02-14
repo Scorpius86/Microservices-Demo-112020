@@ -4,6 +4,9 @@ services:
 ########################################################## microservices.demo.auth.db ##################################################################################
   microservices.demo.auth.db:
     image: ${DOCKER_REGISTRY-}microservicesdemoauthdb
+    mem_limit: 1536m
+    mem_reservation: 128M
+    cpus: 1.0
     ports:
        - 27018:27017
     build:
@@ -14,6 +17,9 @@ services:
 ########################################################## microservices.demo.policy.db ##################################################################################
   microservices.demo.policy.db:
     image: ${DOCKER_REGISTRY-}microservicesdemopolicydb
+    mem_limit: 1536m
+    mem_reservation: 128M
+    cpus: 1.0
     ports:
        - 14332:1433
     volumes:
@@ -26,6 +32,9 @@ services:
 ########################################################## microservices.demo.pricing.db ##################################################################################
   microservices.demo.pricing.db:
     image: ${DOCKER_REGISTRY-}microservicesdemopricingdb
+    mem_limit: 1536m
+    mem_reservation: 128M
+    cpus: 1.0
     ports:
        - 54321:5432
     build:
@@ -36,6 +45,9 @@ services:
 ########################################################## microservices.demo.product.db ##################################################################################
   microservices.demo.product.db:
     image: ${DOCKER_REGISTRY-}microservicesdemoproductdb
+    mem_limit: 1536m
+    mem_reservation: 128M
+    cpus: 1.0
     ports:
        - 14331:1433
     volumes:
@@ -45,8 +57,8 @@ services:
       context: .
     networks:
       - backend
-########################################################## networks ##################################################################################
+########################################################## networks #######################################################################################################
 networks:
-  backend:      
+  backend:
     name: backend
     driver: bridge

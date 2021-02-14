@@ -9,7 +9,8 @@ import { map, catchError } from 'rxjs/operators';
 })
 export class ProductsService {
   port = '44399';
-  baseUrl = `${this.window.location.protocol}//${this.window.location.hostname}:${this.port}`;
+  //baseUrl = `${this.window.location.protocol}//${this.window.location.hostname}:${this.port}`;
+  baseUrl = `http://${this.window.location.hostname}:${this.port}`;
   productsApiUrl = this.baseUrl + '/api/products';
 
   constructor(

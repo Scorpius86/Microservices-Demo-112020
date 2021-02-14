@@ -10,7 +10,8 @@ import { ICreateOfferResult } from './icreate-offer-result';
 })
 export class OffersService {
   port = '44399';
-  baseUrl = `${this.window.location.protocol}//${this.window.location.hostname}:${this.port}`;
+  //baseUrl = `${this.window.location.protocol}//${this.window.location.hostname}:${this.port}`;
+  baseUrl = `http://${this.window.location.hostname}:${this.port}`;
   offersApiUrl = this.baseUrl + '/api/offers';
 
   constructor(

@@ -11,7 +11,8 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class AuthService {
   port = '44399';
-  baseUrl = `${this.window.location.protocol}//${this.window.location.hostname}:${this.port}`;
+  //baseUrl = `${this.window.location.protocol}//${this.window.location.hostname}:${this.port}`;
+  baseUrl = `http://${this.window.location.hostname}:${this.port}`;
   redirectUrl: string;
   isAuthenticated = false;
   authUrl = this.baseUrl + '/api/users';

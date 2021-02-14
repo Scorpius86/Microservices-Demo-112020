@@ -10,7 +10,8 @@ import { ICreatePolicyResult } from './icreate-policy-result';
 })
 export class PoliciesService {
   port = '44399';
-  baseUrl = `${this.window.location.protocol}//${this.window.location.hostname}:${this.port}`;
+  //baseUrl = `${this.window.location.protocol}//${this.window.location.hostname}:${this.port}`;
+  baseUrl = `http://${this.window.location.hostname}:${this.port}`;
   policiesApiUrl = this.baseUrl + '/api/policies';
 
   constructor(

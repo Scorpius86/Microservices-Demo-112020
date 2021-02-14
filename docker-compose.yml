@@ -4,9 +4,13 @@ services:
 ########################################################## microservices.demo.product.api ################################################################################
   microservices.demo.product.api:
     image: ${DOCKER_REGISTRY-}microservicesdemoproductapi
+    mem_limit: 256m
+    mem_reservation: 128M
+    cpus: 0.25
+    environment:      
+      - ASPNETCORE_URLS=http://::80
     ports:
-      - "80"
-      - "443"
+      - "80"      
     build:
       context: .
       dockerfile: app/Domain/Microservices.Demo.Product.API/Dockerfile
@@ -15,9 +19,13 @@ services:
 ########################################################## microservices.demo.pricing.api ################################################################################
   microservices.demo.pricing.api:
     image: ${DOCKER_REGISTRY-}microservicesdemopricingapi
+    mem_limit: 256m
+    mem_reservation: 128M
+    cpus: 0.25
+    environment:      
+      - ASPNETCORE_URLS=http://::80
     ports:
-      - 80
-      - 443
+      - 80      
     build:
       context: .
       dockerfile: app/Domain/Microservices.Demo.Pricing.API/Dockerfile
@@ -26,9 +34,13 @@ services:
 ########################################################## microservices.demo.policy.api #################################################################################
   microservices.demo.policy.api:
     image: ${DOCKER_REGISTRY-}microservicesdemopolicyapi
+    mem_limit: 256m
+    mem_reservation: 128M
+    cpus: 0.25
+    environment:      
+      - ASPNETCORE_URLS=http://::80
     ports:
-      - 80
-      - 443
+      - 80      
     build:
       context: .
       dockerfile: app/Domain/Microservices.Demo.Policy.API/Dockerfile
@@ -37,9 +49,13 @@ services:
 ########################################################## microservices.demo.auth.api ###################################################################################
   microservices.demo.auth.api:
     image: ${DOCKER_REGISTRY-}microservicesdemoauthapi
+    mem_limit: 256m
+    mem_reservation: 128M
+    cpus: 0.25
+    environment:      
+      - ASPNETCORE_URLS=http://::80
     ports:
-      - 80
-      - 443
+      - 80      
     build:
       context: .
       dockerfile: app/Infrastructure/Microservices.Demo.Auth.API/Dockerfile
@@ -48,18 +64,20 @@ services:
 ########################################################## microservices.demo.client.web.apigateway ######################################################################
   microservices.demo.client.web.apigateway:
     image: ${DOCKER_REGISTRY-}microservicesdemoclientwebapigateway
+    mem_limit: 256m
+    mem_reservation: 128M
+    cpus: 0.25
+    environment:      
+      - ASPNETCORE_URLS=http://::80
     ports:
-      - 80
-      - 44399:443
+      - 44399:80      
     build:
       context: .
       dockerfile: app/Infrastructure/Microservices.Demo.Client.Web.ApiGateway/Dockerfile
     networks:
       - backend
-########################################################## networks ######################################################################################################
+########################################################## networks #######################################################################################################
 networks:
   backend:
     name: backend
     driver: bridge
-
-
